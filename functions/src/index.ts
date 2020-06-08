@@ -11,13 +11,13 @@ const auth = admin.auth();
 const createUser = new CreateUser(firestore, auth);
 const deleteUser = new DeleteUser(firestore);
 
-export const createUserByAuth = functions.auth.user().onCreate((user) => {
-  if (user.email) {
-    createUser.onFirestore({ email: user.email, displayName: user.displayName || '' }, user.uid);
-  } else {
-    console.error('[CRETE USER] Email Undefined');
-  }
-});
+// export const createUserByAuth = functions.auth.user().onCreate((user) => {
+//   if (user.email) {
+//     createUser.onFirestore({ email: user.email, displayName: user.displayName || '' }, user.uid);
+//   } else {
+//     console.error('[CRETE USER] Email Undefined');
+//   }
+// });
 
 export const deleteUserByAuth = functions.auth.user().onDelete((user) => {
   deleteUser.onFirestore(user.uid);
